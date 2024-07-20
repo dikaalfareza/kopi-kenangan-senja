@@ -64,6 +64,22 @@ document.addEventListener("alpine:init", () => {
       }
     },
   });
+
+  Alpine.store("modal", {
+    item: [],
+    show(showItem) {
+      this.item.push(showItem);
+
+      const itemDetailModal = document.getElementById("item-detail-modal");
+      itemDetailModal.style.display = "flex";
+    },
+    close() {
+      this.item = [];
+      const itemDetailModal = document.getElementById("item-detail-modal");
+
+      itemDetailModal.style.display = "none";
+    },
+  });
 });
 
 // konversi ke Rupiah

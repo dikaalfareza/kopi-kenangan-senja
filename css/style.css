@@ -580,6 +580,7 @@ footer .credit p a {
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 99999;
+  align-items: center;
 }
 
 /* Animation */
@@ -598,7 +599,7 @@ footer .credit p a {
   animation: down 0.5s;
   background-color: #fefefe;
   width: 80%;
-  margin: 15% auto;
+  margin: auto;
   padding: 1.2rem;
   color: var(--bg);
   position: relative;
@@ -618,6 +619,7 @@ footer .credit p a {
 .modal .modal-container .modal-content {
   display: flex;
   flex-wrap: nowrap;
+  padding-bottom: 1rem;
 }
 
 .modal .modal-content img {
@@ -644,17 +646,16 @@ footer .credit p a {
   color: #fefefe;
 }
 
+.modal .product-content .product-stars {
+  padding-left: 0;
+}
+
 .modal .modal-content .product-content a span {
   font-size: 1.2rem;
 }
 
-.modal .modal-content .product-price,
-.modal .modal-content .product-price span {
+.modal .modal-content .product-price {
   color: var(--bg);
-}
-
-.modal .modal-content .product-price span {
-  font-weight: 300;
 }
 
 /* Media Queries */

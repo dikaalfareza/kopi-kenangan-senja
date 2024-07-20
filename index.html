@@ -169,7 +169,7 @@
                   <use href="img/feather-sprite.svg#shopping-cart" />
                 </svg>
               </a>
-              <a href="#" class="detail-item-button">
+              <a href="#" class="detail-item-button" @click.prevent="$store.modal.show(item)">
                 <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <use href="img/feather-sprite.svg#eye" />
                 </svg>
@@ -261,28 +261,49 @@
     <!-- Footer end -->
 
     <!-- Modal Box Item Detail start -->
-    <div class="modal" id="item-detail-modal">
+    <div class="modal" id="item-detail-modal" x-data @click.self="$store.modal.close()">
       <div class="modal-container">
-        <a href="#" class="close-btn"><i data-feather="x"></i></a>
-        <div class="modal-content">
-          <img src="img/products/1.jpeg" alt="Coffee Beans 1" />
-          <div class="product-content">
-            <h3>Coffee Beans 1</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam nostrum vero optio, at odio temporibus voluptas. Neque expedita cum hic enim fuga, corporis assumenda dolore? Lorem ipsum dolor, sit amet consectetur
-              adipisicing elit. Debitis, optio!
-            </p>
-            <div class="product-stars">
-              <i data-feather="star" class="star-fill"></i>
-              <i data-feather="star" class="star-fill"></i>
-              <i data-feather="star" class="star-fill"></i>
-              <i data-feather="star" class="star-fill"></i>
-              <i data-feather="star"></i>
+        <a href="#" class="close-btn" @click.prevent="$store.modal.close()">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <use href="img/feather-sprite.svg#x" />
+          </svg>
+        </a>
+        <template x-for="(item, index) in $store.modal.item" x-key="index">
+          <div class="modal-content">
+            <img :src="`img/products/${item.img}`" :alt="item.name" />
+            <div class="product-content">
+              <h3 x-text="item.name"></h3>
+              <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Obcaecati magni minus libero voluptatem numquam corporis. Ut ab doloremque voluptas, maiores neque qui doloribus possimus! Repellendus minima praesentium consequuntur
+                accusamus amet!
+              </p>
+              <div class="product-stars">
+                <svg width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <use href="img/feather-sprite.svg#star" />
+                </svg>
+                <svg width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <use href="img/feather-sprite.svg#star" />
+                </svg>
+                <svg width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <use href="img/feather-sprite.svg#star" />
+                </svg>
+                <svg width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <use href="img/feather-sprite.svg#star" />
+                </svg>
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <use href="img/feather-sprite.svg#star" />
+                </svg>
+              </div>
+              <div class="product-price"><span x-text="rupiah(item.price)"></span></div>
+              <a href="#" @click.prevent="$store.cart.add(item)">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <use href="img/feather-sprite.svg#shopping-cart" />
+                </svg>
+                <span>add to cart</span>
+              </a>
             </div>
-            <div class="product-price">IDR 30K <span>IDR 55K</span></div>
-            <a href="#"><i data-feather="shopping-cart"></i><span>add to cart</span></a>
           </div>
-        </div>
+        </template>
       </div>
     </div>
     <!-- Modal Box Item Detail end -->
