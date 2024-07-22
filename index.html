@@ -4,18 +4,26 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Kopi Kenangan Senja</title>
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;1,700&display=swap" rel="stylesheet" />
+
     <!-- JS Feather Icons -->
     <script src="https://unpkg.com/feather-icons"></script>
+
     <!-- My CSS -->
     <link rel="stylesheet" href="css/style.css" />
+
     <!-- AlpineJS -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
     <!-- App -->
-    <script src="src/app.js"></script>
+    <script src="src/app.js" async></script>
+
+    <!-- Midtrans -->
+    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-XbXKOQtHPNrOX0XT"></script>
   </head>
   <body>
     <!-- Navbar start -->
@@ -68,6 +76,8 @@
 
         <div class="form-container" x-show="$store.cart.items.length">
           <form action="" id="checkoutForm">
+            <input type="hidden" name="items" x-model="JSON.stringify($store.cart.items)" />
+            <input type="hidden" name="total" x-model="$store.cart.total" />
             <h5>Customer Detail</h5>
 
             <label for="name">
@@ -83,7 +93,7 @@
               <input type="number" name="phone" id="phone" autocomplete="off" />
             </label>
 
-            <button type="submit" id="checkout-button" class="checkout-button" value="checkout">Checkout</button>
+            <button type="submit" id="checkout-button" class="checkout-button disabled" value="checkout">Checkout</button>
           </form>
         </div>
       </div>
