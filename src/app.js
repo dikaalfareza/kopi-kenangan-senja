@@ -107,34 +107,38 @@ checkoutButton.addEventListener("click", async function (e) {
   const data = new URLSearchParams(formData);
   const objData = Object.fromEntries(data);
   // console.log(objData);
+  alert(formatMessage(objData));
 
   // const message = formatMessage(objData);
   // window.open("http://wa.me/6285643226880?text=" + encodeURIComponent(message));
 
-  // minta transaction token menggunakan ajax / fetch
-  try {
-    const response = await fetch("php/placeOrder.php", {
-      method: "POST",
-      body: data,
-    });
-    const token = await response.text();
-    // console.log(token);
-    window.snap.pay(token);
-  } catch (err) {
-    console.log(err.message);
-  }
+  // // minta transaction token menggunakan ajax / fetch
+  //   try {
+  //     const response = await fetch("php/placeOrder.php", {
+  //       method: "POST",
+  //       body: data,
+  //     });
+  //     const token = await response.text();
+  //     // console.log(token);
+  //     window.snap.pay(token);
+  //   } catch (err) {
+  //     console.log(err.message);
+  //   }
 });
 
 // format pesan whatsapp
 const formatMessage = (obj) => {
+  const items = JSON.parse(obj.items);
+  const formattedItems = items.map((item, index) => (index === 0 ? `${item.name} (${item.quantity} X ${rupiah(item.price)})` : `  ${item.name} (${item.quantity} X ${rupiah(item.price)})`)).join("\n");
+
   return `Data Customer
   Nama: ${obj.name}
   Email: ${obj.email}
   No HP: ${obj.phone}
   Data Pesanan:
-  ${JSON.parse(obj.items).map((item) => `${item.name} (${item.quantity} X ${rupiah(item.price)}) \n`)}
+  ${formattedItems}
   TOTAL: ${rupiah(obj.total)}
-  Terima kasih.
+  Terima kasih :)
   `;
 };
 
